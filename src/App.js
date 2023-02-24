@@ -1,9 +1,11 @@
-import LoginForm from "./views/components/form/LoginForm";
+// import LoginForm from "./views/components/form/LoginForm";
+// import SignUpForm from "./views/components/form/SignUpForm";
+import DashboardSignUp from "./views/components/dashboard/DashboardSignUp";
 
 function App() {
   return (
     <div className="App">
-      <LoginForm />
+      <DashboardSignUp />
     </div>
   );
 }
