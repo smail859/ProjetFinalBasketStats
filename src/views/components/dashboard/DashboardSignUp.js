@@ -9,24 +9,43 @@ import {
   Button,
   Typography,
   CardMedia,
-  Checkbox,
 } from "@mui/material";
 
 function DashboardSignUp() {
-  const [state, setState] = useState([
-    "Tir2Points",
-    "Tir3Points",
-    "LayupMG",
-    "LayupMD",
+  const titles = [
+    "Tir 2 Points",
+    "Tir 3 Points",
+    "Layup MG",
+    "Layup MD",
     "Lancer Franc",
-  ]);
+  ];
+
+  const [scores, setScores] = useState(
+    titles.map(() => ({
+      score1: "",
+      score2: "",
+    }))
+  );
+
+  const handleScoreChange = (event, index, field) => {
+    const newScores = [...scores];
+    newScores[index][field] = event.target.value;
+    setScores(newScores);
+  };
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    console.log(scores);
+  };
+
   return (
     <Card
       sx={{
-        minWidth: 400,
         display: "flex",
-        flexDirection: "column",
-        padding: 5,
+        alignItems: "center",
+        justifyContent: "center",
+        minWidth: 400,
+        margin: 30,
       }}
     >
       <CardContent>
@@ -35,6 +54,60 @@ function DashboardSignUp() {
             Entrainements par defaut
           </Typography>
         </Box>
+
+        {titles.map((title, index) => (
+          <Box
+            key={index}
+            sx={{
+              display: "inline-block",
+            }}
+          >
+            <Card
+              sx={{
+                width: 200,
+                margin: 5,
+              }}
+            >
+              <CardContent
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <CardMedia component="img" image="../../public/basket.jpg" />
+                <Typography>{title}</Typography>
+                <TextField
+                  fullWidth
+                  margin="normal"
+                  id={`Score1-${index}`}
+                  size="small"
+                  label="Enter ton score  sur 50"
+                  variant="standard"
+                  value={scores[index].score1}
+                  onChange={(event) =>
+                    handleScoreChange(event, index, "score1")
+                  }
+                />
+
+                <TextField
+                  fullWidth
+                  margin="normal"
+                  size="small"
+                  id={`Score2-${index}`}
+                  label="Enter ton score  sur 50"
+                  variant="standard"
+                  value={scores[index].score2}
+                  onChange={(event) =>
+                    handleScoreChange(event, index, "score2")
+                  }
+                />
+              </CardContent>
+            </Card>
+          </Box>
+        ))}
+
         <Box
           sx={{
             display: "flex",
@@ -42,23 +115,9 @@ function DashboardSignUp() {
             alignItems: "center",
           }}
         >
-          <Button>Envoyées les données</Button>
-        </Box>
-
-        <Box sx={{ display: "flex" }}>
-          <Card>
-            <CardContent>
-              <Typography>Titre 1</Typography>
-              <CardMedia
-                component="img"
-                sx={{ width: 151 }}
-                image="/basket.jpg"
-              />
-              <TextField></TextField>
-              <TextField></TextField>
-              <Checkbox />
-            </CardContent>
-          </Card>
+          <Button type="submit" onClick={handleClick}>
+            Envoyées les données
+          </Button>
         </Box>
       </CardContent>
     </Card>

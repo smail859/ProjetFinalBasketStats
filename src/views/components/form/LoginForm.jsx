@@ -12,27 +12,29 @@ import {
   Typography,
   FormControlLabel,
   Link,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 
-const wait = function (duration = 1000) {
-  return new Promise((resolve) => {
-    window.setTimeout(resolve, duration);
-  });
-};
-
 function LoginForm() {
+  const EMAIL_LABEL = "Adresse Email";
+  const PASSWORD_LABEL = "Mot de passe";
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting, isValid, isSubmitSuccessful },
   } = useForm({ mode: "onChange" });
 
-  const onSubmit = async (data) => {
-    await wait(2000);
+  const onSubmit = (data) => {
     console.log(data);
+    if (data.rememberMe) {
+      console.log("Se souvenir de moi a été coché");
+    } else {
+      console.log("Se souvenir de moi n'a pas été coché");
+    }
   };
   console.log(isValid);
 
@@ -83,7 +85,10 @@ function LoginForm() {
           </Box>
 
           {isSubmitSuccessful && (
-            <div className=".alert alert-succes">Connexion reussi</div> // redirection vers la page perso du compte envoie des données vers la bdd
+            <Alert severity="success">
+              <AlertTitle>Connexion réussie</AlertTitle>
+              Vous allez être redirigé vers votre page personnelle
+            </Alert>
           )}
 
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
@@ -93,7 +98,7 @@ function LoginForm() {
               type="email"
               margin="normal"
               id="input-email"
-              label="Adresse Email"
+              label={EMAIL_LABEL}
               variant="standard"
               {...register("email", { required: true })}
             />
@@ -107,7 +112,7 @@ function LoginForm() {
               type="password"
               margin="normal"
               id="input-password"
-              label="Mot de passe"
+              label={PASSWORD_LABEL}
               variant="standard"
               {...register("password", {
                 required: "Vous devez entrer un mot de passe",
@@ -115,11 +120,11 @@ function LoginForm() {
                   value: 8,
                   message: "le mot de passe doit contenir au moins 8 caractere",
                 },
-                // pattern: {
-                //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                //   message:
-                //     "Le mot de passe doit contenir au moins 1 chiffres et une majuscule ",
-                // },
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/,
+                  message:
+                    "Le mot de passe doit contenir au moins 8 caractères et une majuscule ",
+                },
               })}
             />
           </Box>
@@ -134,7 +139,7 @@ function LoginForm() {
             }}
           >
             <FormControlLabel
-              control={<Checkbox checked={checked} />}
+              control={<Checkbox {...register("rememberMe")} />}
               label="Se souvenir de moi?"
             />
             <Link href="#" underline="none">

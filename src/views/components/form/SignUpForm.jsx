@@ -1,6 +1,6 @@
 import "./form.css";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+
 import {
   Card,
   Checkbox,
@@ -12,42 +12,35 @@ import {
   Typography,
   FormControlLabel,
   Link,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import PersonIcon from "@mui/icons-material/Person";
-import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 
-const wait = function (duration = 1000) {
-  return new Promise((resolve) => {
-    window.setTimeout(resolve, duration);
-  });
-};
-
 function SignUpForm() {
+  const pseudoLabel = "Pseudo";
+  const emailLabel = "Adresse Email";
+  const passwordLabel = "Mot de passe";
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting, isValid, isSubmitSuccessful },
   } = useForm({ mode: "onChange" });
 
-  const onSubmit = async (data) => {
-    await wait(2000);
+  const onSubmit = (data) => {
     console.log(data);
+    if (data.rememberMe) {
+      console.log("Condition d'utilisation coché");
+    } else {
+      console.log("Condition d'utilisation non coché");
+    }
   };
   console.log(isValid);
 
-  const [checked, setChecked] = useState(false);
-
-  // const handleChange = (event) => {
-  //   if (checked === true) {
-
-  //   }
-  //   setChecked(event.target.checked);
-  // };
-
   if (isSubmitSuccessful) {
-    // return redirection + envoie des données a la bdd
+    // return redirection
   }
 
   return (
@@ -79,45 +72,38 @@ function SignUpForm() {
             }}
           >
             <Typography color="text.secondary" gutterBottom>
-              Salut, Inscrit-toi
+              Salut ! Inscit-toi
             </Typography>
           </Box>
 
           {isSubmitSuccessful && (
-            <div className=".alert alert-succes">
-              Inscription reussi et envoie des données
-            </div> // redirection vers la page perso du compte envoie des données vers la bdd
+            <Alert severity="success">
+              <AlertTitle>Insciption réussie</AlertTitle>
+              Vous allez être redirigé vers votre page personnelle
+            </Alert>
           )}
-
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <PersonIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
             <TextField
               fullWidth
               type="text"
               margin="normal"
-              id="input-user"
-              label="Nom d'utilisateur"
+              id="input-pseudo"
+              label={pseudoLabel}
               variant="standard"
-              {...register("user", {
-                required: true,
-                minLength: {
-                  value: 3,
-                  message:
-                    "Le nom d'utilisateur doit faire au moins 3 caractères",
-                },
-              })}
+              {...register("pseudo", { required: true })}
             />
           </Box>
-          {errors.user && <p>{errors.user.message}</p>}
+          {errors.pseudo && <p>{errors.pseudo.message}</p>}
 
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-            <EmailIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+            <PersonIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
             <TextField
               fullWidth
               type="email"
               margin="normal"
               id="input-email"
-              label="Adresse Email"
+              label={emailLabel}
               variant="standard"
               {...register("email", { required: true })}
             />
@@ -131,7 +117,7 @@ function SignUpForm() {
               type="password"
               margin="normal"
               id="input-password"
-              label="Mot de passe"
+              label={passwordLabel}
               variant="standard"
               {...register("password", {
                 required: "Vous devez entrer un mot de passe",
@@ -139,11 +125,11 @@ function SignUpForm() {
                   value: 8,
                   message: "le mot de passe doit contenir au moins 8 caractere",
                 },
-                // pattern: {
-                //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                //   message:
-                //     "Le mot de passe doit contenir au moins 1 chiffres et une majuscule ",
-                // },
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/,
+                  message:
+                    "Le mot de passe doit contenir au moins 8 caractères et une majuscule ",
+                },
               })}
             />
           </Box>
@@ -158,9 +144,12 @@ function SignUpForm() {
             }}
           >
             <FormControlLabel
-              control={<Checkbox checked={checked} />}
-              label="j'accepte les termes d'utilisations."
+              control={<Checkbox {...register("rememberMe")} />}
+              label="J'accpete les condition d'utilisation"
             />
+            <Link href="#" underline="none">
+              {"Mot de passe oublié"}
+            </Link>
           </Box>
         </CardContent>
 
@@ -184,7 +173,7 @@ function SignUpForm() {
         }}
       >
         <Link href="#" underline="none">
-          {"Déja inscrit? Connecte-toi"}
+          {"Connecte-toi"}
         </Link>
       </Box>
     </form>
