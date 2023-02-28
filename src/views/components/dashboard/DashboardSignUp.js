@@ -65,7 +65,7 @@ function DashboardSignUp() {
             <Card
               sx={{
                 width: 200,
-                margin: 5,
+                margin: 4,
               }}
             >
               <CardContent
@@ -76,7 +76,10 @@ function DashboardSignUp() {
                   justifyContent: "center",
                 }}
               >
-                <CardMedia component="img" image="../../public/basket.jpg" />
+                <CardMedia
+                  component="img"
+                  image="https://picsum.photos/200/100/"
+                />
                 <Typography>{title}</Typography>
                 <TextField
                   fullWidth

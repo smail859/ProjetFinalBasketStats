@@ -1,0 +1,15 @@
+////////////////////////////////////////////////////////////////
+const selectedDataKey = `data${selectedChartIndex}`;
+
+const people = [
+  { name: "Alice", age: 25, country: "France" },
+  { name: "Bob", age: 30, country: "USA" },
+  { name: "Charlie", age: 40, country: "Canada" },
+];
+
+const selectedPersonIndex = 1; // Bob est le deuxième objet dans le tableau, donc l'index est 1
+const selectedAgeKey = "age"; // la clé pour l'âge dans chaque objet est 'age'
+const selectedAge = people[selectedPersonIndex][selectedAgeKey]; // sélectionne l'objet de Bob, puis l'âge dans cet objet
+console.log(selectedAge); // affiche 30
+
+////////////////////////////////////////////////////////////////
