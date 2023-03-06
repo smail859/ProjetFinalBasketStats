@@ -44,7 +44,7 @@ function DashboardLogin() {
       name: "Mars",
       data0: 1,
       data1: 15,
-      data2: 25,
+      data2: 55,
       data3: 5,
       data4: 15,
     },
@@ -80,14 +80,15 @@ function DashboardLogin() {
 
   return (
     <div>
-      <Widgets />
+      <Widgets chartTitles={chartTitles} data={dataPoints} />
       <Card
         sx={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           minWidth: 400,
-          margin: 35,
+          marginTop: 15,
+          marginLeft: 20,
         }}
       >
         <Box
