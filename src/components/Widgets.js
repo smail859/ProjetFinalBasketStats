@@ -46,7 +46,7 @@ function Widgets({ chartTitles, data }) {
       sx={{
         display: "flex",
         justifyContent: "space-between",
-        marginTop: 5,
+        marginTop: 20,
         marginLeft: 20,
       }}
     >

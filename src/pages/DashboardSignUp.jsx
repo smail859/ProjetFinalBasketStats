@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "./dashbordSignUp.css";
+import "../styles/dashboardSignUp.css";
 import {
   Card,
   TextField,

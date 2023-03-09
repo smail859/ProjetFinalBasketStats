@@ -1,7 +1,8 @@
 import { useState } from "react";
-import Chart from "./Chart";
-import Widgets from "./Widgets";
-import "./dashboardSignUp.css.css";
+import NavBar from "../components/NavBar";
+import Chart from "../components/Chart";
+import Widgets from "../components/Widgets";
+import "../styles/dashboardSignUp.css";
 import {
   Card,
   CardContent,
@@ -80,6 +81,7 @@ function DashboardLogin() {
 
   return (
     <div>
+      <NavBar />
       <Widgets chartTitles={chartTitles} data={dataPoints} />
       <Card
         sx={{
@@ -87,7 +89,7 @@ function DashboardLogin() {
           alignItems: "center",
           justifyContent: "center",
           minWidth: 400,
-          marginTop: 15,
+          marginTop: 10,
           marginLeft: 20,
         }}
       >

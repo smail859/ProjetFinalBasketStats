@@ -1,6 +1,5 @@
-import "./form.css";
+import "../styles/form.css";
 import { useForm } from "react-hook-form";
-
 import {
   Card,
   Checkbox,
@@ -19,10 +18,9 @@ import {
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 
-function SignUpForm() {
-  const pseudoLabel = "Pseudo";
-  const emailLabel = "Adresse Email";
-  const passwordLabel = "Mot de passe";
+function LoginForm() {
+  const EMAIL_LABEL = "Adresse Email";
+  const PASSWORD_LABEL = "Mot de passe";
   const {
     handleSubmit,
     register,
@@ -32,12 +30,11 @@ function SignUpForm() {
   const onSubmit = (data) => {
     console.log(data);
     if (data.rememberMe) {
-      console.log("Condition d'utilisation coché");
+      console.log("Se souvenir de moi a été coché");
     } else {
-      console.log("Condition d'utilisation non coché");
+      console.log("Se souvenir de moi n'a pas été coché");
     }
   };
-  console.log(isValid);
 
   if (isSubmitSuccessful) {
     // return redirection
@@ -72,29 +69,16 @@ function SignUpForm() {
             }}
           >
             <Typography color="text.secondary" gutterBottom>
-              Salut ! Inscit-toi
+              Te revoila, connecte toi
             </Typography>
           </Box>
 
           {isSubmitSuccessful && (
             <Alert severity="success">
-              <AlertTitle>Insciption réussie</AlertTitle>
+              <AlertTitle>Connexion réussie</AlertTitle>
               Vous allez être redirigé vers votre page personnelle
             </Alert>
           )}
-          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-            <PersonIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-            <TextField
-              fullWidth
-              type="text"
-              margin="normal"
-              id="input-pseudo"
-              label={pseudoLabel}
-              variant="standard"
-              {...register("pseudo", { required: true })}
-            />
-          </Box>
-          {errors.pseudo && <p>{errors.pseudo.message}</p>}
 
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <PersonIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
@@ -103,7 +87,7 @@ function SignUpForm() {
               type="email"
               margin="normal"
               id="input-email"
-              label={emailLabel}
+              label={EMAIL_LABEL}
               variant="standard"
               {...register("email", { required: true })}
             />
@@ -117,7 +101,7 @@ function SignUpForm() {
               type="password"
               margin="normal"
               id="input-password"
-              label={passwordLabel}
+              label={PASSWORD_LABEL}
               variant="standard"
               {...register("password", {
                 required: "Vous devez entrer un mot de passe",
@@ -145,7 +129,7 @@ function SignUpForm() {
           >
             <FormControlLabel
               control={<Checkbox {...register("rememberMe")} />}
-              label="J'accpete les condition d'utilisation"
+              label="Se souvenir de moi?"
             />
             <Link href="#" underline="none">
               {"Mot de passe oublié"}
@@ -172,12 +156,12 @@ function SignUpForm() {
           justifyContent: "center",
         }}
       >
-        <Link href="#" underline="none">
-          {"Connecte-toi"}
+        <Link href="/SignUpForm" underline="none">
+          {"Nouveau? Inscrit-toi"}
         </Link>
       </Box>
     </form>
   );
 }
 
-export default SignUpForm;
+export default LoginForm;

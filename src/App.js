@@ -1,13 +1,24 @@
-// import LoginForm from "./views/components/form/LoginForm";
-// import SignUpForm from "./views/components/form/SignUpForm";
-// import DashboardSignUp from "./views/components/dashboard/DashboardSignUp";
-// import DashboardLogin from "./views/components/dashboard/DashboardLogin";
-import TrainingRcm from "./views/components/training/TrainingRcm";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SignUpForm from "./pages/SignUpForm";
+import LoginForm from "./pages/LoginForm";
+import DashboardSignUp from "./pages/DashboardSignUp";
+import DashboardLogin from "./pages/DashboardLogin";
+import TrainingRcm from "./pages/TrainingRcm";
 
 function App() {
   return (
     <div className="App">
-      <TrainingRcm />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/SignUpForm" element={<SignUpForm />} />
+          <Route path="/LoginForm" element={<LoginForm />} />
+          <Route path="/DashboardSignUp" element={<DashboardSignUp />} />
+          <Route path="/DashboardLogin" element={<DashboardLogin />} />
+          <Route path="/TrainingRcm" element={<TrainingRcm />} />
+          {""}
+          <Route path="/*" element={<DashboardLogin />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

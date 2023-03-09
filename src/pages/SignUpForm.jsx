@@ -1,6 +1,5 @@
-import "./form.css";
+import "../styles/form.css";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import {
   Card,
   Checkbox,
@@ -19,9 +18,10 @@ import {
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 
-function LoginForm() {
-  const EMAIL_LABEL = "Adresse Email";
-  const PASSWORD_LABEL = "Mot de passe";
+function SignUpForm() {
+  const pseudoLabel = "Pseudo";
+  const emailLabel = "Adresse Email";
+  const passwordLabel = "Mot de passe";
   const {
     handleSubmit,
     register,
@@ -31,21 +31,12 @@ function LoginForm() {
   const onSubmit = (data) => {
     console.log(data);
     if (data.rememberMe) {
-      console.log("Se souvenir de moi a été coché");
+      console.log("Condition d'utilisation coché");
     } else {
-      console.log("Se souvenir de moi n'a pas été coché");
+      console.log("Condition d'utilisation non coché");
     }
   };
   console.log(isValid);
-
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = (event) => {
-    if (checked === true) {
-      const defaultValue = { ...register };
-    }
-    setChecked(event.target.checked);
-  };
 
   if (isSubmitSuccessful) {
     // return redirection
@@ -80,16 +71,29 @@ function LoginForm() {
             }}
           >
             <Typography color="text.secondary" gutterBottom>
-              Te revoila, connecte toi
+              Salut ! Inscit-toi
             </Typography>
           </Box>
 
           {isSubmitSuccessful && (
             <Alert severity="success">
-              <AlertTitle>Connexion réussie</AlertTitle>
+              <AlertTitle>Insciption réussie</AlertTitle>
               Vous allez être redirigé vers votre page personnelle
             </Alert>
           )}
+          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+            <PersonIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+            <TextField
+              fullWidth
+              type="text"
+              margin="normal"
+              id="input-pseudo"
+              label={pseudoLabel}
+              variant="standard"
+              {...register("pseudo", { required: true })}
+            />
+          </Box>
+          {errors.pseudo && <p>{errors.pseudo.message}</p>}
 
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <PersonIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
@@ -98,7 +102,7 @@ function LoginForm() {
               type="email"
               margin="normal"
               id="input-email"
-              label={EMAIL_LABEL}
+              label={emailLabel}
               variant="standard"
               {...register("email", { required: true })}
             />
@@ -112,7 +116,7 @@ function LoginForm() {
               type="password"
               margin="normal"
               id="input-password"
-              label={PASSWORD_LABEL}
+              label={passwordLabel}
               variant="standard"
               {...register("password", {
                 required: "Vous devez entrer un mot de passe",
@@ -140,7 +144,7 @@ function LoginForm() {
           >
             <FormControlLabel
               control={<Checkbox {...register("rememberMe")} />}
-              label="Se souvenir de moi?"
+              label="J'accpete les condition d'utilisation"
             />
             <Link href="#" underline="none">
               {"Mot de passe oublié"}
@@ -167,17 +171,12 @@ function LoginForm() {
           justifyContent: "center",
         }}
       >
-        <Link href="#" underline="none">
-          {"Nouveau? Inscrit-toi"}
+        <Link href="./LoginForm" underline="none">
+          {"Connecte-toi"}
         </Link>
       </Box>
     </form>
   );
 }
 
-export default LoginForm;
-
-// Gestion du formulaire
-//1. création du formulaire
-//2. soumission du formulaire
-// 3. collecte des données du formulaire
+export default SignUpForm;
