@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Janvier",
+    "data0": 50,
+    "data1": 20,
+    "data2": 30,
+    "data3": 15,
+    "data4": 5
+  },
+  {
+    "name": "Février",
+    "data0": 50,
+    "data1": 25,
+    "data2": 20,
+    "data3": 10,
+    "data4": 10
+  },
+  {
+    "name": "Mars",
+    "data0": 1,
+    "data1": 15,
+    "data2": 55,
+    "data3": 5,
+    "data4": 15
+  },
+  {
+    "name": "Mai",
+    "data0": 1,
+    "data1": 15,
+    "data2": 25,
+    "data3": 5,
+    "data4": 15
+  },
+  {
+    "name": "Juin",
+    "data0": 1,
+    "data1": 15,
+    "data2": 25,
+    "data3": 5,
+    "data4": 15
+  },
+  {
+    "name": "Juillet",
+    "data0": 1,
+    "data1": 15,
+    "data2": 25,
+    "data3": 5,
+    "data4": 15
+  }
+]

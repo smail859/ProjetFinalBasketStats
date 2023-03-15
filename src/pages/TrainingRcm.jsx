@@ -8,35 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 import { useMemo, useState } from "react";
-import CardTraining from "../components/CardTraining";
+import CardTraining from "../components/componentsTraining/CardTraining";
 import "../styles/training.css";
-
-const chartTitles = [
-  "Tir 2 Points",
-  "Tir 3 Points",
-  "Layup MG",
-  "Layup MD",
-  "Lancer Franc",
-];
-
-const dataPoints = [
-  {
-    name: "Janvier",
-    data0: 175,
-    data1: 180,
-    data2: 10,
-    data3: 10,
-    data4: 10,
-  },
-  {
-    name: "Février",
-    data0: 0,
-    data1: 10,
-    data2: 10,
-    data3: 10,
-    data4: 10,
-  },
-];
 
 function TrainingRcm() {
   const MIN_SCORE = 175;
