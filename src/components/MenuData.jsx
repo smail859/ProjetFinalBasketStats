@@ -6,7 +6,7 @@ import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlin
 export const MenuData = [
   {
     title: "Acceuil",
-    url: "./pages/DashBoardLogin",
+    url: "/DashBoardLogin",
     cName: "nav-links",
     icon: <HomeOutlinedIcon />,
   },

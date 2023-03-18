@@ -1,9 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignUpForm from "./pages/SignUpForm";
-import LoginForm from "./pages/LoginForm";
-import DashboardSignUp from "./pages/DashboardSignUp";
-import DashboardLogin from "./pages/DashboardLogin";
-import TrainingRcm from "./pages/TrainingRcm";
+import SignUpForm from "./pages/signUpForm";
+import LoginForm from "./pages/loginForm";
+import DashboardSignUp from "./pages/dashboardSignUp";
+import DashboardLogin from "./pages/dashboardLogin";
+import Messaging from "./pages/messaging";
+// import Settings from "./pages/Settings";
+
+import CalendarTraining from "./pages/calendarTraining";
 
 function App() {
   return (
@@ -14,9 +17,9 @@ function App() {
           <Route path="/LoginForm" element={<LoginForm />} />
           <Route path="/DashboardSignUp" element={<DashboardSignUp />} />
           <Route path="/DashboardLogin" element={<DashboardLogin />} />
-          <Route path="/TrainingRcm" element={<TrainingRcm />} />
-          {""}
-          <Route path="/*" element={<DashboardLogin />} />
+          <Route path="/CalendarTraining" element={<CalendarTraining />} />
+          <Route path="/Messaging" element={<Messaging />} />
+          <Route path="/*" element={<SignUpForm />} />
         </Routes>
       </BrowserRouter>
     </div>
