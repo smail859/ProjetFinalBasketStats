@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AddAlertIcon from "@mui/icons-material/AddAlert";
-import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import ThermostatIcon from "@mui/icons-material/Thermostat";
+
 import {
   Card,
-  Box,
   CardContent,
   Typography,
   TextField,
@@ -59,40 +59,34 @@ function MessagingNotif() {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minWidth: 500,
-      }}
-    >
+    <div className="container">
       <Card>
-        <Typography>
-          {" "}
-          <AddAlertIcon /> Entrer votre ville
-        </Typography>
+        <Typography variant="h4">La Méteo</Typography>
         <CardContent>
-          <form onSubmit={handleSubmit}>
-            <TextField />
-            <Button type="submit">Envoyer</Button>
-          </form>
+          <Typography>
+            <form className="form" onSubmit={handleSubmit}>
+              <ThermostatIcon />
+              <TextField placeholder="Entrez votre ville " />
+              <Button type="submit">Envoyer</Button>
+            </form>
+          </Typography>
 
-          {weather && (
-            <Typography>
-              {weather.name}, {weather.sys.country}
-            </Typography>
-          )}
-          {weather && <Typography>{weather.main.temp} °C</Typography>}
-
+          <div className="weather">
+            {weather && (
+              <Typography>
+                {weather.name}, {weather.sys.country}
+              </Typography>
+            )}
+            {weather && <Typography>{weather.main.temp} °C</Typography>}
+          </div>
           <Typography>
             {" "}
-            <SportsBasketballIcon /> Conseil
+            <TipsAndUpdatesIcon /> Conseil
           </Typography>
-          {renderWeather()}
+          <div className="weather">{renderWeather()}</div>
         </CardContent>
       </Card>
-    </Box>
+    </div>
   );
 }
 

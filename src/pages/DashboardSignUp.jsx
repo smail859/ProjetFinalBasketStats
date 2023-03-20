@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/dashboardSignUp.css";
+
 import { Card, Box, CardContent, Button, Typography } from "@mui/material";
 import ScoreCard from "../components/componentsDashboardSignUp/ScoreCard";
 import titles from "../assets/title.json";

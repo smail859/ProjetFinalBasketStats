@@ -1,99 +1,76 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 import {
   Card,
-  Box,
   CardContent,
   Typography,
-  TextField,
-  Button,
+  ImageList,
+  ImageListItem,
+  Link,
 } from "@mui/material";
+import { Carousel } from "react-responsive-carousel";
 
 function MessagingNews() {
-  const [teamsData, setTeamsData] = useState();
-  const [gamesData, setGamesData] = useState();
-  const [teamName, setTeamName] = useState();
+  const [newsItems, setNewsItems] = useState([]);
+
+  async function getBasketballNews() {
+    try {
+      const response = await axios.get(
+        "https://newsapi.org/v2/top-headlines?country=us&category=sports&q=basketball",
+        {
+          headers: {
+            Authorization: "1c64b8ade7234a84aa4d543c7d4530bc",
+          },
+        }
+      );
+      setNewsItems(response.data.articles);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
-    const fetchTeamshData = async () => {
-      const options = {
-        method: "GET",
-        url: `https://free-nba.p.rapidapi.com/teams`,
-        headers: {
-          "X-RapidAPI-Key":
-            "47bc6e9931mshfc2beba9e5b4639p1c8b95jsn4273b4ceabb7",
-          "X-RapidAPI-Host": "free-nba.p.rapidapi.com",
-        },
-      };
-      const response = await axios.request(options);
-      setTeamsData(response.data);
-    };
-    const fetchScoresData = async () => {
-      const options = {
-        method: "GET",
-        url: "https://free-nba.p.rapidapi.com/games",
-        params: { page: "0", per_page: "10", Seasons: "2018" },
-        headers: {
-          "X-RapidAPI-Key":
-            "47bc6e9931mshfc2beba9e5b4639p1c8b95jsn4273b4ceabb7",
-          "X-RapidAPI-Host": "free-nba.p.rapidapi.com",
-        },
-      };
-      const response = await axios.request(options);
-      console.log(response.data);
-    };
-
-    fetchTeamshData();
-    fetchScoresData();
-  }, [teamName]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setTeamName(e.target[0].value.toLowerCase());
-    e.target[0].value = "";
-  };
+    getBasketballNews();
+  }, []);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minWidth: 500,
-        margin: 50,
-      }}
-    >
-      <Card>
-        <Typography>Choisis l'actualité de l'équipe que tu veux</Typography>
-        <CardContent>
-          <form onSubmit={handleSubmit}>
-            <TextField />
-            <Button type="submit">Envoyer</Button>
-          </form>
-          <Typography>
-            Equipe selectioné {teamsData && teamName.full_name}
-          </Typography>
-          <Typography>Dernier Match : </Typography>
-          {gamesData && <Typography>{gamesData.date}</Typography>}
-          {gamesData && (
-            <Typography>{gamesData.home_team.full_name}</Typography>
-          )}
-          {gamesData && (
-            <Typography>
-              {gamesData.home_team.full_name} vs{" "}
-              {gamesData.visitor_team.full_name}
-            </Typography>
-          )}
-          {gamesData && (
-            <Typography>
-              {gamesData.home_home_team_score} - {gamesData.visitor_team_score}
-            </Typography>
-          )}
-        </CardContent>
-      </Card>
-    </Box>
+    <>
+      <Carousel
+        autoPlay
+        interval={6000}
+        infiniteLoop
+        thumbWidth={120}
+        showIndicators={false}
+        showStatus={false}
+      >
+        {newsItems.map((newsItem) => (
+          <div className="Carousel">
+            <Card key={newsItem.url}>
+              <CardContent>
+                <Typography variant="h5">
+                  {newsItem.title} Date de publication : {newsItem.publishedAt}{" "}
+                </Typography>
+                <Typography variant="h6">{newsItem.description}</Typography>
+                <Typography>
+                  <ImageList>
+                    <ImageListItem>
+                      <img alt={newsItem.title} src={newsItem.urlToImage} />
+                    </ImageListItem>
+                  </ImageList>
+                  <p>{newsItem.content}</p>
+                  <Typography>
+                    <Link variant="body1" underline="hover" href={newsItem.url}>
+                      Click pour voir l'article
+                    </Link>
+                  </Typography>
+                </Typography>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+      </Carousel>
+    </>
   );
 }
 

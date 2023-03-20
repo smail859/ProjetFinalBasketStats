@@ -6,7 +6,6 @@ import Widgets from "../components/componentsDashboardLogin/Widgets";
 import StatFormControl from "../components/componentsDashboardLogin/StatFormControl";
 import data from "../assets/data.json";
 import title from "../assets/title.json";
-import "../styles/dashboardSignUp.css";
 
 function DashboardLogin() {
   const [dataPoints, setDataPoints] = useState(data);

@@ -3,7 +3,7 @@ import MessagingNews from "../components/MessagingNews";
 
 function Messaging() {
   return (
-    <div>
+    <div className="parent_container">
       <MessagingNotif />
       <MessagingNews />
     </div>
