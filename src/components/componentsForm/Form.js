@@ -1,4 +1,6 @@
-import FormField from "./FormField";
+import FormField from "../Field/FormField";
+import CustomButton from "../buttons/Button";
+import "./form.css";
 import PropTypes from "prop-types";
 import {
   Card,
@@ -6,17 +8,16 @@ import {
   Box,
   CardActions,
   CardContent,
-  Button,
   Typography,
   FormControlLabel,
   Link,
   Alert,
   AlertTitle,
 } from "@mui/material";
+
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 import EmailIcon from "@mui/icons-material/Email";
-import "../../styles/form.css";
 
 function Form({
   handleSubmit,
@@ -36,18 +37,12 @@ function Form({
   nameLink,
 }) {
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="formSignUp">
-      <Card className="cardForm">
-        <CardContent className="cardContent">
+    <form onSubmit={handleSubmit(onSubmit)} className="form_signup">
+      <Card className="card_form">
+        <CardContent className="card_content">
           <Box className="cardTitle">
-            <Typography color="text.primary" gutterBottom>
-              {title}
-            </Typography>
-          </Box>
-          <Box className="cardSubTitle">
-            <Typography color="text.secondary" gutterBottom>
-              {name}
-            </Typography>
+            <Typography gutterBottom>{title}</Typography>
+            <Typography gutterBottom>{name}</Typography>
           </Box>
 
           {isSubmitSuccessful && (
@@ -56,22 +51,23 @@ function Form({
               Vous allez être redirigé vers votre page personnelle
             </Alert>
           )}
-          {formType === "3-fields" && (
-            <Box className="form-field-box">
+
+          {formType === "3-fields" && ( // si le formulaire est de type "3-fields", affiche un champ pour le pseudo
+            <Box className="form-field-box ">
               <PersonIcon className="formIcon" />
               <FormField
                 type="text"
                 label="Pseudo"
                 name="pseudo"
-                rules={{ required: true }}
-                register={register}
-                errors={errors}
-                className="formField"
+                rules={{ required: true }} // règle de validation qui indique que le champ est obligatoire
+                register={register} // enregistre le champ avec React Hook Form
+                errors={errors} // affiche les erreurs de validation éventuelles
               />
             </Box>
           )}
 
-          <Box className="form-field-box">
+          {/* Champ "Email" */}
+          <Box className="form-field-box ">
             <EmailIcon className="formIcon" />
             <FormField
               type="email"
@@ -80,11 +76,11 @@ function Form({
               rules={{ required: true }}
               register={register}
               errors={errors}
-              className="formField"
             />
           </Box>
 
-          <Box className="form-field-box">
+          {/* Champ "Mot de passe" */}
+          <Box className="form-field-box ">
             <LockIcon className="formIcon" />
             <FormField
               type="password"
@@ -104,10 +100,8 @@ function Form({
               }}
               register={register}
               errors={errors}
-              className="formField"
             />
           </Box>
-
           <Box className="formCheckbox">
             <FormControlLabel
               control={<Checkbox {...register("rememberMe")} />}
@@ -119,14 +113,14 @@ function Form({
           </Box>
         </CardContent>
         <CardActions className="formSubmit">
-          <Button
+          <CustomButton
             disabled={isSubmitting || !isValid}
             type="submit"
-            size="big"
-            className="formSubmitButton"
+            size="small"
+            variant="button"
           >
             {button}
-          </Button>
+          </CustomButton>
         </CardActions>
       </Card>
       <Box className="link-box">

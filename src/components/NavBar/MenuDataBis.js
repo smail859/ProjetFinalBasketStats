@@ -3,29 +3,25 @@ import SportsBasketballOutlinedIcon from "@mui/icons-material/SportsBasketballOu
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
 
-export const MenuData = [
+export const MenuDataBis = [
   {
     title: "Acceuil",
-    url: "/DashBoardLogin",
-    cName: "nav-links",
+    url: "/dashBoardLogin",
     icon: <HomeOutlinedIcon />,
   },
   {
     title: "Entrainements",
-    url: "./pages/Dashboard",
-    cName: "nav-links",
+    url: "/calendarTraining",
     icon: <SportsBasketballOutlinedIcon />,
   },
   {
-    title: "Calendrier",
-    url: "#",
-    cName: "nav-links",
+    title: "Messagerie",
+    url: "/Messaging",
     icon: <CalendarMonthOutlinedIcon />,
   },
   {
     title: "Parametres",
-    url: "#",
-    cName: "nav-links",
+    url: "/settings",
     icon: <ManageAccountsOutlinedIcon />,
   },
 ];

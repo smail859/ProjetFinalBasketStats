@@ -1,13 +1,33 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  outline: none;
+  list-style: none;
+  text-decoration: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: "Montserrat", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("./assets/basketBallDeux.jpg"); /* ajouter votre première image de fond */
+  animation: slide 20s linear infinite; /* durée de 20 secondes pour l'animation, et répétition infinie */
+  background-size: cover; /* redimensionner l'image pour remplir la taille de la carte */
+}
+
+/* définition de l'animation slide */
+@keyframes slide {
+  0% {
+    background-image: url("./assets/basketBallDeux.jpg"); /* afficher la première image */
+  }
+  20% {
+    background-image: url("./assets/basketBallQuatre.jpg"); /* afficher la deuxième image */
+  }
+  40% {
+    background-image: url("./assets/basketBallTrois.jpg"); /* afficher la troisième image */
+  }
+  /* continuer avec les images suivantes */
+  100% {
+    background-image: url("./assets/basketBallDeux.jpg"); /* revenir à la première image */
+  }
 }

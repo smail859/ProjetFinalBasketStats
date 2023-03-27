@@ -1,0 +1,9 @@
+.notif_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}

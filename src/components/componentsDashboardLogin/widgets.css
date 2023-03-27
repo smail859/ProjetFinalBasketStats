@@ -1,0 +1,81 @@
+.box_widgets {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  animation-name: slideInUp;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.widgets_container {
+  min-width: 300px;
+  max-width: 400px;
+  border: 2px solid #f47b06;
+  border-radius: 8px !important;
+  box-shadow: 0px 0px 10px #777 !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+.widgets_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.widgets_title {
+  margin-bottom: 10px;
+  font-size: 24px !important;
+  font-weight: bold !important;
+  color: #f56024 !important;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+.widgets_subtitle {
+  margin-bottom: 5px;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+}
+
+.no-sidebar .box_widgets {
+  margin-left: 0px !important;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    width: 100%;
+  }
+}

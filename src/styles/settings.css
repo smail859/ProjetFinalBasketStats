@@ -1,0 +1,20 @@
+.settings {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 300px;
+  margin-left: 100px;
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

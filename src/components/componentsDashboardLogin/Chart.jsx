@@ -8,14 +8,17 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import "./chart.css";
 
 function Chart({ data, title, chartIndex }) {
+  // Définition des couleurs utilisées pour les lignes du graphique
   const chartColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
 
+  // Initialisation du tableau qui va contenir les différentes lignes de données du graphique
   let lines = [];
 
+  // Si l'option "Tous les graphiques" est sélectionnée, créer un tableau de toutes les lignes de données
   if (chartIndex === title.length) {
-    // Si l'option "Tous les graphiques" est sélectionnée, créer un tableau de toutes les lignes de données
     lines = title.map((stat, index) => (
       <Line
         key={index}
@@ -38,8 +41,9 @@ function Chart({ data, title, chartIndex }) {
     );
   }
 
+  // Affichage du graphique avec les données et les lignes définies précédemment
   return (
-    <div>
+    <div className="chart">
       <LineChart width={1000} height={500} data={data}>
         <XAxis dataKey="name" />
         <YAxis />

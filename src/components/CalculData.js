@@ -1,13 +1,9 @@
-import { Typography } from "@mui/material";
+import { Typography, Checkbox } from "@mui/material";
 import { useMemo } from "react";
-import TrainingSelector from "./TrainingSelector";
+import CustomButton from "./buttons/Button";
+import titles from "../assets/title.json";
 
-function CalculData({
-  title,
-  data,
-  handleTrainingSelection,
-  handleAddTraining,
-}) {
+function CalculData({ data, onChange, onClick }) {
   const totalPoints = useMemo(() => {
     if (data.length > 0) {
       return data.reduce(
@@ -29,26 +25,25 @@ function CalculData({
 
   const render = (totalPoints) => {
     return totalPoints.map((total, index) => {
-      console.log(total);
       if (total < 175) {
         return (
-          <TrainingSelector
-            handleTrainingSelection={handleTrainingSelection}
-            handleAddTraining={handleAddTraining}
-            key={index}
-          />
-        );
-      } else {
-        return (
-          <Typography key={index}>Aucun entraînement conseillé </Typography>
+          <>
+            <Typography variant="h6">
+              {titles[index].name}{" "}
+              <Checkbox name={titles[index].name} onChange={onChange} />
+            </Typography>
+          </>
         );
       }
     });
   };
 
-  //   console.log(totalPoints);
-
-  return <>{render(totalPoints)}</>;
+  return (
+    <>
+      {render(totalPoints)}{" "}
+      <CustomButton onClick={onClick}>Ajouter</CustomButton>
+    </>
+  );
 }
 
 export default CalculData;

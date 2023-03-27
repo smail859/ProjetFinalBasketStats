@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import Form from "../components/componentsForm/Form";
-import "../styles/pageForm.css";
 
 function LoginForm() {
   const emailLabel = "Adresse Email";

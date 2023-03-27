@@ -1,0 +1,75 @@
+.card_dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  border-radius: 10px !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+.card_dashboard .card {
+  margin: 30px;
+  margin-left: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_content_dashboard {
+  padding: 2px;
+}
+
+.card_title_dashboard {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 50px !important;
+  font-weight: bold !important;
+  color: #f47b06 !important;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.button_dashboard {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.button_dashboard button {
+  background-color: #f47b06;
+}
+
+.button_dashboard button:hover {
+  background-color: #050200;
+}
+
+.card_dashboard .MuiTextField-root label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  color: #333333;
+}
+
+.card_dashboard .card {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card_dashboard .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+}
+
+.card_dashboard .card-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 500px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.card_dashboard .card img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  max-height: 200px;
+  border-radius: 5px;
+}

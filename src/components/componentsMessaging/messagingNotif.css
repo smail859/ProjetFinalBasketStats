@@ -1,0 +1,106 @@
+.notif_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 80px;
+  height: 90vh;
+}
+
+.notif_card {
+  width: 600px;
+  border-radius: 10px;
+  border: 2px solid #f47b06;
+  box-shadow: 0px 0px 10px #777 !important;
+  padding: 24px;
+  animation: slideInDown 0.5s ease-out forwards;
+}
+
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.notif_card h4 {
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: bold;
+  color: #f56024;
+  text-align: center;
+}
+
+.notif_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.notif_form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.notif_form svg {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  fill: #1e88e5;
+}
+
+.notif_form input {
+  margin-left: 8px;
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 1px solid #bdbdbd;
+  outline: none;
+  transition: border-color 0.3s ease-out;
+}
+
+.notif_form button {
+  margin-left: 25px;
+}
+.notif_form:hover button {
+  background-color: black;
+}
+.weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  animation: slideInUp 0.5s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.weather svg {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  color: #1e88e5;
+}
+
+.weather span {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.weather p {
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}

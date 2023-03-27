@@ -1,14 +1,13 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo } from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import data from "../../assets/data.json";
 import titles from "../../assets/title.json";
+import "./widgets.css";
 
-function Widgets() {
-  const [dataPoints, setDataPoints] = useState(data);
-
-  const totalPoints = useMemo(() => {
+function Widgets({ dataPoints }) {
+  // Calculer le nombre total de points pour chaque mois
+  const totalPointsByMonth = useMemo(() => {
     if (dataPoints.length > 0) {
       return dataPoints.reduce(
         (acc, monthData) => {
@@ -27,59 +26,33 @@ function Widgets() {
     }
   }, [dataPoints]);
 
-  useEffect(() => {
-    const fetchDataPoints = async () => {
-      try {
-        const response = await fetch("/assets/data.json");
-        const jsonData = await response.json();
-        setDataPoints(jsonData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchDataPoints();
-  }, []);
-
-  const affichageTotalPoints = (index) => {
-    const total = totalPoints[index];
+  // Récupérer l'icône de flèche appropriée en fonction du total de points pour chaque mois
+  const getArrowIcon = (index) => {
+    const total = totalPointsByMonth[index];
     if (total > 175) {
-      return (
-        <Typography variant="body2">
-          {total}/350 points marqués <ArrowUpwardIcon />
-        </Typography>
-      );
+      return <ArrowUpwardIcon />;
     } else if (total < 175) {
-      return (
-        <Typography variant="body2">
-          {total}/350 points marqués <ArrowDownwardIcon />
-        </Typography>
-      );
+      return <ArrowDownwardIcon />;
     } else {
-      return (
-        <Typography variant="body2">{total}/350 points marqués</Typography>
-      );
+      return null;
     }
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        marginTop: 20,
-        marginLeft: 20,
-      }}
-    >
+    <Box className="box_widgets no-sidebar">
+      {/* Boucle pour chaque widget */}
       {titles.map((title, index) => (
-        <Card key={index} sx={{ minWidth: 275 }}>
-          <CardContent>
-            <Typography variant="h5" component="h2">
-              {title.name}
+        <Card key={title.name} className="widgets_container">
+          <CardContent className="widgets_content">
+            {/* Titre du widget */}
+            <Typography className="widgets_title">{title.name}</Typography>
+            {/* Sous-titre du widget */}
+            <Typography className="widgets_subtitle">Total</Typography>
+            {/* Affichage du nombre total de points pour chaque mois */}
+            <Typography variant="body2">
+              {totalPointsByMonth[index]}/350 points marqués{" "}
+              {getArrowIcon(index)}
             </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              Total
-            </Typography>
-            {affichageTotalPoints(index)}
           </CardContent>
         </Card>
       ))}

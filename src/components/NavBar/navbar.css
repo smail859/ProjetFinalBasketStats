@@ -1,0 +1,85 @@
+/* Styling pour la sidebar */
+.sidebar {
+  margin-right: 0;
+  background-color: black;
+  color: white;
+  height: 100vh; /* Hauteur de 100% de la hauteur de la vue */
+  transition: all 0.5s; /* Ajout d'une transition pour une animation plus douce */
+}
+
+.container {
+  display: flex;
+}
+
+main {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Styling pour la partie supérieure de la sidebar */
+.top_selection {
+  display: flex; /* Utilisation de flexbox pour aligner les éléments horizontalement */
+  align-items: center;
+  padding: 20px 15px;
+}
+
+.logo {
+  font-size: 20px;
+}
+
+.bars {
+  display: flex;
+  font-size: 25px;
+  margin-left: 50px;
+}
+
+/* Styling pour les liens dans la sidebar */
+.link {
+  display: flex;
+  color: white;
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s; /* Ajout d'une transition pour une animation plus douce */
+}
+
+/* Styling pour les liens survolés */
+.link:hover {
+  background: rgb(228, 105, 35);
+  color: black;
+  transition: all 0.5s; /* Ajout d'une transition pour une animation plus douce */
+}
+
+/* Styling pour les liens actifs */
+.active {
+  background: rgb(228, 105, 35);
+  color: black;
+}
+
+/* Styling pour les icônes et les textes des liens */
+.icon,
+.link_text {
+  font-size: 20px;
+}
+
+/* Styling pour la sidebar en mode responsive */
+@media screen and (max-width: 768px) {
+  /* Pour les écrans de 768px de largeur ou moins */
+  .sidebar {
+    width: 100%; /* La largeur de la sidebar doit être de 100% */
+    position: fixed; /* La sidebar doit être positionnée en mode fixe */
+    top: 0; /* La sidebar doit être en haut de la page */
+    left: -100%; /* La sidebar doit être en dehors de la page par défaut */
+    z-index: 999; /* La sidebar doit être au-dessus de tous les autres éléments */
+  }
+
+  .sidebar.active {
+    left: 0; /* Lorsque la sidebar est active, elle doit être positionnée à gauche de la page */
+    transition: all 0.5s; /* Ajout d'une transition pour une animation plus douce */
+  }
+
+  .link {
+    width: 100%; /* Les liens doivent avoir une largeur de 100% */
+    padding: 10px 0; /* Les liens doivent avoir un padding haut/bas de 10px et un padding gauche/droite de 0 */
+    justify-content: center; /* Les liens doivent être centrés horizontalement */
+  }
+}

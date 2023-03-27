@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Card } from "@mui/material";
-import NavBar from "../components/NavBar";
 import Chart from "../components/componentsDashboardLogin/Chart";
 import Widgets from "../components/componentsDashboardLogin/Widgets";
 import StatFormControl from "../components/componentsDashboardLogin/StatFormControl";
 import data from "../assets/data.json";
 import title from "../assets/title.json";
+import "../styles/dashboardLogin.css";
 
 function DashboardLogin() {
   const [dataPoints, setDataPoints] = useState(data);
@@ -25,28 +25,25 @@ function DashboardLogin() {
 
   return (
     <div>
-      <NavBar />
-      <Widgets data={dataPoints} />
-      <Card
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minWidth: 400,
-          margin: 30,
-        }}
-      >
+      <Widgets dataPoints={dataPoints} />
+      <Card className="chart-container">
         {selectedChartIndex !== null && selectedChartIndex !== "all" && (
-          <Chart data={data} title={title} chartIndex={selectedChartIndex} />
+          <Chart
+            className="chart"
+            data={data}
+            title={title}
+            chartIndex={selectedChartIndex}
+          />
         )}
         {selectedChartIndex === "all" && (
-          <Chart data={data} title={title} chartIndex="all" />
+          <Chart className="chart" data={data} title={title} chartIndex="all" />
         )}
         <StatFormControl
           onStatChange={handleStatChange}
           onChartIndexChange={handleChartIndexChange}
           data={data}
           showAllCharts={showAllCharts}
+          className="stat-container"
         />
       </Card>
     </div>
