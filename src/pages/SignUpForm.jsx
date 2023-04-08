@@ -2,21 +2,28 @@ import { useForm } from "react-hook-form";
 import Form from "../components/componentsForm/Form";
 
 function SignUpForm() {
+  // Définition des libellés pour l'adresse email et le mot de passe
   const emailLabel = "Adresse Email";
   const passwordLabel = "Mot de passe";
+
+  // Récupération des méthodes et des propriétés liées au formulaire avec la bibliothèque react-hook-form
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting, isValid, isSubmitSuccessful },
   } = useForm({ mode: "onChange" });
 
+  // Fonction appelée lors de la soumission du formulaire
   const onSubmit = (data) => {
+    // Si la soumission est réussie et que la case à cocher rememberMe a été cochée, afficher un message dans la console
     if (isSubmitSuccessful && data.rememberMe === true) {
-      console.log("Entré");
+      console.log("entré");
     } else {
+      // Sinon, afficher un message indiquant que la condition d'utilisation n'a pas été cochée
       console.log("Condition d'utilisation non coché");
     }
   };
+
   console.log(isValid);
 
   return (

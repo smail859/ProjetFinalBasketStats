@@ -10,42 +10,30 @@ import {
 import PropTypes from "prop-types";
 import titles from "../../assets/title.json";
 import CustomButton from "../buttons/Button";
+import { selectedTrainings } from "../../redux/reducers";
+import { useDispatch } from "react-redux";
 import "./training.css";
 
 function Training({ title, buttonText, checkboxClassName, buttonClassName }) {
-  // initialisation d'un tableau vide pour stocker les entrainements sélectionnés
-  const [selectedTraining, setSelectedTraining] = useState([]);
+  const [trainingCheck, setTrainingCheck] = useState([]);
+  const [addedTrainingName, setAddedTrainingName] = useState("");
+  const dispatch = useDispatch();
 
-  /// initialisation d'un tableau vide pour stocker les nouveaux entrainements ajoutés
-  const [newTrainings, setNewTrainings] = useState([]);
-
-  // état local qui gère l'affichage ou non de l'alerte de succès de suppression
-  const [showAlert, setShowAlert] = useState(false);
-
-  const handleShowAlert = () => {
+  const handleToggle = (name) => {
+    if (trainingCheck.includes(name)) {
+      setTrainingCheck(trainingCheck.filter((t) => t !== name));
+    } else {
+      setTrainingCheck([...trainingCheck, name]);
+    }
+  };
+  const handleAddTraining = () => {
+    dispatch(selectedTrainings(trainingCheck));
+    setAddedTrainingName(trainingCheck.join(", "));
+    setTrainingCheck([]);
     setShowAlert(true);
   };
-
-  // fonction appelée lorsqu'un entrainement est sélectionné
-  const handleTrainingSelection = (event) => {
-    const { name, checked } = event.target;
-    const newTraining = { name, checked };
-    setSelectedTraining((prev) => [
-      ...prev.filter((item) => item.name !== name),
-      newTraining,
-    ]);
-  };
-  // fonction appelée lorsqu'un bouton "Ajouter" est cliqué
-  const handleAddTraining = (event) => {
-    event.preventDefault();
-    const selected = selectedTraining
-      .filter((item) => item.checked) // filtre les entrainements sélectionnés qui ont leur attribut "checked" à true
-      .map((item) => item.name); // extrait le nom des entrainements sélectionnés
-    setNewTrainings((prev) => [...prev, ...selected]); // ajoute les noms des entrainements sélectionnés à la liste des nouveaux entrainements
-    setSelectedTraining([]); // vide la liste des entrainements sélectionnés
-    console.log("Entraînements ajoutés :", selected); // affiche la liste des noms des entrainements ajoutés dans la console
-    handleShowAlert();
-  };
+  // état local qui gère l'affichage ou non de l'alerte de succès de suppression
+  const [showAlert, setShowAlert] = useState(false);
 
   return (
     <>
@@ -56,7 +44,7 @@ function Training({ title, buttonText, checkboxClassName, buttonClassName }) {
           {showAlert && (
             <Alert severity="success">
               <AlertTitle>
-                Entrainement a été ajouté : {newTrainings}{" "}
+                {`entraînements ont été ajoutés : ${addedTrainingName}`}
               </AlertTitle>
             </Alert>
           )}
@@ -65,7 +53,7 @@ function Training({ title, buttonText, checkboxClassName, buttonClassName }) {
               <Typography key={index}>{title.name}</Typography>
               <Checkbox
                 name={titles[index].name}
-                onChange={handleTrainingSelection}
+                onChange={() => handleToggle(title.name)}
                 className={checkboxClassName}
               />
             </>

@@ -4,6 +4,8 @@ import CustomButton from "../buttons/Button";
 import { TextField, Card, List, Typography } from "@mui/material";
 
 function SettingsForm({ pseudo, email, password, adresse, onClick }) {
+  // Le composant SettingsForm prend les props pseudo, email, password, adresse et onClick.
+
   return (
     <Card className="parametre-container">
       <div className="content_list">
@@ -26,7 +28,6 @@ function SettingsForm({ pseudo, email, password, adresse, onClick }) {
           />
         </List>
       </div>
-
       <div className="content_list">
         <List className="parametre-row">
           <Typography className="parametre-label">Mot de passe:</Typography>
@@ -47,7 +48,6 @@ function SettingsForm({ pseudo, email, password, adresse, onClick }) {
           />
         </List>
       </div>
-
       <CustomButton className="deconnexion-button" onClick={onClick}>
         Déconnexion
       </CustomButton>

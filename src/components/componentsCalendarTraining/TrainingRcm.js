@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -8,7 +8,10 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 import CalculData from "../CalculData";
+import titles from "../../assets/title.json";
 import "./trainingRcm.css";
+import { useDispatch } from "react-redux";
+import { addNewTrainings } from "../../redux/reducers";
 
 function TrainingRcm({
   title,
@@ -17,55 +20,64 @@ function TrainingRcm({
   listClassName,
   cardClassName,
 }) {
-  const [selectedTraining, setSelectedTraining] = useState([]);
-  const [newTrainings, setNewTrainings] = useState([]);
-  // état local qui gère l'affichage ou non de l'alerte de succès de suppression
+  // Récupère le dispatcher de Redux
+  const dispatch = useDispatch();
+
   const [showAlert, setShowAlert] = useState(false);
-
-  const handleTrainingSelection = (event) => {
-    const { name, checked } = event.target;
-    const trainingName = { name, checked };
-    setSelectedTraining((prev) => [
-      ...prev.filter((item) => item.name !== name),
-      trainingName,
-    ]);
-    console.log("Entraînements ajoutés :", trainingName);
+  const [trainingCheck, setTrainingCheck] = useState([]);
+  const [addedTrainingName, setAddedTrainingName] = useState("");
+  const handleToggle = (event) => {
+    const { name } = event.target;
+    setTrainingCheck((prevTrainingCheck) => prevTrainingCheck.concat(name));
   };
-
-  const handleAddTraining = (event) => {
-    event.preventDefault();
-    const selected = selectedTraining
-      .filter((item) => item.checked) // filtre les entrainements sélectionnés qui ont leur attribut "checked" à true
-      .map((item) => item.name); // extrait le nom des entrainements sélectionnés
-    setNewTrainings((prev) => [...prev, ...selected]); // ajoute les noms des entrainements sélectionnés à la liste des nouveaux entrainements
-    setSelectedTraining([]); // vide la liste des entrainements sélectionnés
-    console.log("Entraînements ajoutés :", selected); // affiche la liste des noms des entrainements ajoutés dans la console
-    setShowAlert(true);
+  const handleAdd = () => {
+    if (trainingCheck.length > 0) {
+      dispatch(addNewTrainings(trainingCheck));
+      setAddedTrainingName(trainingCheck.join(", "));
+      setTrainingCheck([]);
+      setShowAlert(true);
+    }
   };
+  // Afficher l'alerte avec la dernière formation ajoutée
+  useEffect(() => {
+    if (showAlert) {
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
+    }
+  }, [showAlert]);
 
   return (
     <Card className={cardClassName}>
       <CardContent className="card_content_training_rcm">
+        {/* Affiche le titre s'il est défini */}
         {title && <Typography variant="h5">{title}</Typography>}
+        {/* Affiche un message d'alerte s'il y a eu ajout d'un nouvel entrainement */}
         {showAlert && (
           <Alert severity="success">
             <AlertTitle>
-              Entrainement a été ajouté : {newTrainings.join(", ")}
+              Nouvel entraînement ajouté: {addedTrainingName}
             </AlertTitle>
           </Alert>
         )}
-        <CalculData
-          data={data}
-          onChange={handleTrainingSelection}
-          onClick={handleAddTraining}
-          className={listClassName}
-          buttonText={buttonText}
-        />
+
+        {/* Appel du composant CalculData pour afficher les données */}
+        <>
+          <CalculData
+            trainingName={titles}
+            data={data}
+            onChange={handleToggle}
+            onClick={handleAdd}
+            className={listClassName}
+            buttonText={buttonText}
+          />
+        </>
       </CardContent>
     </Card>
   );
 }
 
+// Propriétés attendues par le composant TrainingRcm
 TrainingRcm.propTypes = {
   title: PropTypes.string,
   data: PropTypes.array.isRequired,

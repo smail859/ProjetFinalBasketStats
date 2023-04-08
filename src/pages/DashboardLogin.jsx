@@ -8,37 +8,42 @@ import title from "../assets/title.json";
 import "../styles/dashboardLogin.css";
 
 function DashboardLogin() {
-  const [dataPoints, setDataPoints] = useState(data);
-  const [selectedChartIndex, setSelectedChartIndex] = useState(0);
+  const [dataPoints, setDataPoints] = useState(data); // initialisation de l'état dataPoints à partir de la variable data, et définition de la fonction setDataPoints qui permet de mettre à jour cet état
+  const [selectedChartIndex, setSelectedChartIndex] = useState(0); // initialisation de l'état selectedChartIndex à 0 (premier graphique affiché), et définition de la fonction setSelectedChartIndex qui permet de mettre à jour cet état
 
   const handleStatChange = (newData) => {
+    // fonction qui permet de mettre à jour l'état dataPoints en fonction des données renvoyées par les contrôles de statistiques
     setDataPoints(newData);
   };
 
   const handleChartIndexChange = (index) => {
+    // fonction qui permet de mettre à jour l'état selectedChartIndex en fonction de l'index du graphique sélectionné
     setSelectedChartIndex(index);
   };
 
   const showAllCharts = () => {
+    // fonction qui permet d'afficher tous les graphiques
     setSelectedChartIndex("all");
   };
 
   return (
     <div>
+      {/*  affichage des widgets avec les données dataPoints */}
       <Widgets dataPoints={dataPoints} />
       <Card className="chart-container">
-        {selectedChartIndex !== null && selectedChartIndex !== "all" && (
-          <Chart
-            className="chart"
-            data={data}
-            title={title}
-            chartIndex={selectedChartIndex}
-          />
-        )}
-        {selectedChartIndex === "all" && (
+        {selectedChartIndex !== null &&
+          selectedChartIndex !== "all" && ( // condition d'affichage d'un graphique spécifique (si selectedChartIndex est différent de null et de "all")
+            <Chart
+              className="chart"
+              data={data}
+              title={title}
+              chartIndex={selectedChartIndex}
+            />
+          )}
+        {selectedChartIndex === "all" && ( // condition d'affichage de tous les graphiques (si selectedChartIndex est égal à "all")
           <Chart className="chart" data={data} title={title} chartIndex="all" />
         )}
-        <StatFormControl
+        <StatFormControl // composant qui permet de sélectionner les statistiques à afficher et le graphique à afficher
           onStatChange={handleStatChange}
           onChartIndexChange={handleChartIndexChange}
           data={data}

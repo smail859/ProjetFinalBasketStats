@@ -6,6 +6,7 @@ import "../styles/dashboardSignUp.css";
 import CustomButton from "../components/buttons/Button";
 
 function DashboardSignUp() {
+  // Initialiser le state pour les scores avec des objets vides
   const [scores, setScores] = useState(
     titles.map(() => ({
       score1: "",
@@ -13,12 +14,15 @@ function DashboardSignUp() {
     }))
   );
 
+  // Fonction pour changer les scores
   const handleScoreChange = (event, index, field) => {
     const newScores = [...scores];
+    // Modifier le score correspondant à l'index et au champ (score1 ou score2)
     newScores[index][field] = event.target.value;
     setScores(newScores);
   };
 
+  // Fonction pour gérer le clic sur le bouton Envoyer
   const handleClick = (event) => {
     event.preventDefault();
     console.log(scores);
@@ -34,6 +38,7 @@ function DashboardSignUp() {
         >
           Entrainements par défaut
         </Typography>
+        {/* Mapper les titres et afficher un ScoreCard pour chaque titre */}
         {titles.map((title, index) => (
           <Box key={index} sx={{ display: "inline-block" }}>
             <ScoreCard
@@ -47,6 +52,7 @@ function DashboardSignUp() {
           </Box>
         ))}
 
+        {/* Bouton pour envoyer les données */}
         <Box className="button_dashboard">
           <CustomButton type="submit" onClick={handleClick}>
             Envoyées les données
