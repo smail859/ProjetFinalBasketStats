@@ -6,7 +6,12 @@ import {
   ListItem,
   ListItemText,
   List,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
+import { useState } from "react";
 // COMPONENTS
 import CustomButton from "../buttons/Button";
 // STYLE
@@ -24,31 +29,24 @@ function CalendarInfos({ title }) {
     (state) => state.training.selectedTrainings
   );
 
-  // Fonction appelée lorsque l'utilisateur clique sur le bouton de suppression d'un entrainement conseillé
-  const handleDelete = (trainingRcm) => {
-    if (
-      window.confirm(
-        `Êtes-vous sûr de vouloir supprimer l'entraînement "${trainingRcm.name}" ?`
-      )
-    ) {
-      // Affiche un message dans la console pour confirmer la suppression
-      console.log(`Entraînement supprimé ${trainingRcm}`);
-      // Supprime l'entrainement de la liste
-      dispatch(deleteTraining({ type: "new", id: trainingRcm.id }));
-    }
+  // Etat pour stocker le training à supprimer
+  const [trainingToDelete, setTrainingToDelete] = useState(null);
+
+  // Fonction appelée lorsque l'utilisateur clique sur le bouton de suppression d'un entrainement conseillé ou sélectionné
+  const handleDeleteDialog = (training) => {
+    setTrainingToDelete(training);
   };
-  // Fonction appelée lorsque l'utilisateur clique sur le bouton de suppression d'un entrainement par defaut
-  const handleDeleteSelected = (selectedTraining) => {
-    if (
-      window.confirm(
-        `Êtes-vous sûr de vouloir supprimer l'entraînement "${selectedTraining.name}" ?`
-      )
-    ) {
-      // Affiche un message dans la console pour confirmer la suppression
-      console.log(`Entraînement supprimé ${selectedTraining}`);
-      // Supprime l'entrainement de la liste
-      dispatch(deleteTraining({ type: "selected", id: selectedTraining.id }));
+
+  // Fonction appelée lorsque l'utilisateur confirme la suppression
+  const handleDeleteConfirmed = () => {
+    // Supprime l'entrainement de la liste
+    if (trainingToDelete.type === "new") {
+      dispatch(deleteTraining({ type: "new", id: trainingToDelete.id }));
+    } else if (trainingToDelete.type === "selected") {
+      dispatch(deleteTraining({ type: "selected", id: trainingToDelete.id }));
     }
+    // Ferme le dialog
+    setTrainingToDelete(null);
   };
 
   return (
@@ -66,7 +64,15 @@ function CalendarInfos({ title }) {
           <List key={trainingRcm.id} className="list">
             <ListItem>
               <ListItemText primary={trainingRcm.name} />
-              <CustomButton onClick={() => handleDelete(trainingRcm)}>
+              <CustomButton
+                onClick={() =>
+                  handleDeleteDialog({
+                    type: "new",
+                    id: trainingRcm.id,
+                    name: trainingRcm.name,
+                  })
+                }
+              >
                 Supprimer
               </CustomButton>
             </ListItem>
@@ -82,16 +88,41 @@ function CalendarInfos({ title }) {
             <ListItem>
               <ListItemText primary={selectedTraining.name} />
               <CustomButton
-                onClick={() => handleDeleteSelected(selectedTraining)}
+                onClick={() =>
+                  handleDeleteDialog({
+                    type: "selected",
+                    id: selectedTraining.id,
+                    name: selectedTraining.name,
+                  })
+                }
               >
                 Supprimer
               </CustomButton>
             </ListItem>
           </List>
         ))}
+
+        {/* Dialog de confirmation de suppression */}
+        <Dialog
+          open={!!trainingToDelete}
+          onClose={() => setTrainingToDelete(null)}
+        >
+          <DialogTitle>Confirmation de suppression</DialogTitle>
+          <DialogContent>
+            Êtes-vous sûr de vouloir supprimer l'entraînement "
+            {trainingToDelete?.name}" ?
+          </DialogContent>
+          <DialogActions>
+            <CustomButton onClick={() => setTrainingToDelete(null)}>
+              Annuler
+            </CustomButton>
+            <CustomButton onClick={handleDeleteConfirmed} autoFocus>
+              Supprimer
+            </CustomButton>
+          </DialogActions>
+        </Dialog>
       </CardContent>
     </Card>
   );
 }
-
 export default CalendarInfos;

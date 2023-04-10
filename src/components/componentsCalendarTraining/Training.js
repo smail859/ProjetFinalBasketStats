@@ -1,4 +1,6 @@
+// REACT
 import { useState } from "react";
+// MATERIAL UI
 import {
   Card,
   CardContent,
@@ -7,11 +9,16 @@ import {
   Alert,
   AlertTitle,
 } from "@mui/material";
+// PROPS
 import PropTypes from "prop-types";
-import titles from "../../assets/title.json";
+// JSON
+import trainingTitles from "../../assets/title.json";
+// COMPONENTS
 import CustomButton from "../buttons/Button";
+// REDUX
 import { selectedTrainings } from "../../redux/reducers";
 import { useDispatch } from "react-redux";
+// STYLE
 import "./training.css";
 
 function Training({ title, buttonText, checkboxClassName, buttonClassName }) {
@@ -36,7 +43,7 @@ function Training({ title, buttonText, checkboxClassName, buttonClassName }) {
   const [showAlert, setShowAlert] = useState(false);
 
   return (
-    <>
+    <div className="training">
       <Card className="card_training">
         <CardContent className="card_content_training">
           <Typography variant="h4"> {title} </Typography>
@@ -48,12 +55,12 @@ function Training({ title, buttonText, checkboxClassName, buttonClassName }) {
               </AlertTitle>
             </Alert>
           )}
-          {titles.map((title, index) => (
+          {trainingTitles.map((trainingTitle) => (
             <>
-              <Typography key={index}>{title.name}</Typography>
+              <Typography>{trainingTitle.name}</Typography>
               <Checkbox
-                name={titles[index].name}
-                onChange={() => handleToggle(title.name)}
+                name={trainingTitle.name}
+                onChange={() => handleToggle(trainingTitle.name)}
                 className={checkboxClassName}
               />
             </>
@@ -64,14 +71,12 @@ function Training({ title, buttonText, checkboxClassName, buttonClassName }) {
           {buttonText}
         </CustomButton>
       </Card>
-    </>
+    </div>
   );
 }
 
 Training.propTypes = {
   title: PropTypes.string,
-  onSelection: PropTypes.func,
-  onAdd: PropTypes.func,
   buttonText: PropTypes.string,
   checkboxClassName: PropTypes.string,
   buttonClassName: PropTypes.string,

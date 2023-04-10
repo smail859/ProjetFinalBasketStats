@@ -14,6 +14,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // REDUX
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import ErrorComponent from "./components/ErrorComponent";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/Messaging" element={<Messaging />} />
             <Route path="/Settings" element={<Settings />} />
             <Route path="/" element={<SignUpForm />} />
+            <Route path="*" element={<ErrorComponent />} />
           </Routes>
         </NavBarBis>
       </BrowserRouter>

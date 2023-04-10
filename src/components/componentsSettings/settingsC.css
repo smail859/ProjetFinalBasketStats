@@ -1,41 +1,44 @@
 .parametre-container {
-  max-width: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  padding: 100px;
   border: 2px solid #f47b06;
   border-radius: 8px !important;
   box-shadow: 0px 0px 10px #777 !important;
 }
 
-.content_list {
-  margin-top: 20px;
-  margin-right: 50px;
-}
-.content_list input {
+.parametre-value {
   width: 100%;
 }
 
-.parametre-row {
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.parametre-label {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.parametre-value {
-  font-size: 16px;
-}
-
 .deconnexion-button {
-  margin-top: 10px !important;
-  margin-bottom: 20px !important;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 20px !important;
 }
 
-.deconnexion-button:hover {
-  background-color: #000 !important;
+.edit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 0.2rem;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.edit-icon:hover {
+  background-color: #eee;
+}
+
+.edit-icon:active {
+  background-color: #ddd;
+}
+
+.personal-info {
+  font-family: "Montserrat", sans-serif !important;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px !important;
+  font-size: 50px !important;
+  font-weight: bold !important;
+  color: #f47b06 !important;
 }

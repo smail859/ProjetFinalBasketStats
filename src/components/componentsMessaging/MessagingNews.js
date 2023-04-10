@@ -1,8 +1,11 @@
+// REACT
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+// MATERIAL UI
 import { Card, CardContent, Typography, Link } from "@mui/material";
+// COMPONENTS
 import CustomButton from "../buttons/Button";
+// STYLE
 import "./messagingNews.css";
 
 function MessagingNews({ newsApiUrl, newsApiKey, newsPageSize, newsCategory }) {

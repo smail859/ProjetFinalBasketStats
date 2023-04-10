@@ -57,10 +57,6 @@
   text-decoration: underline;
 }
 
-.card_caroussel button:hover {
-  background-color: #000000;
-}
-
 @media (max-width: 600px) {
   .card_content_caroussel {
     padding: 10px;

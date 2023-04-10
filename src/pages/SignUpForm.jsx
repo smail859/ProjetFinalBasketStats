@@ -1,4 +1,6 @@
+// REACT HOOK FORM
 import { useForm } from "react-hook-form";
+// COMPONENTS
 import Form from "../components/componentsForm/Form";
 
 function SignUpForm() {

@@ -1,10 +1,15 @@
+// REACT
 import { useState } from "react";
+// MATERIAL UI
 import { Card } from "@mui/material";
+// COMPONENTS
 import Chart from "../components/componentsDashboardLogin/Chart";
 import Widgets from "../components/componentsDashboardLogin/Widgets";
 import StatFormControl from "../components/componentsDashboardLogin/StatFormControl";
+// JSON
 import data from "../assets/data.json";
 import title from "../assets/title.json";
+// STYLE
 import "../styles/dashboardLogin.css";
 
 function DashboardLogin() {

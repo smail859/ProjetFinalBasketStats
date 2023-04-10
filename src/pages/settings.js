@@ -1,4 +1,6 @@
+// COMPONENTS
 import SettingsForm from "../components/componentsSettings/SettingsForm";
+// STYLE
 import "../styles/settings.css";
 
 function Settings() {
@@ -12,7 +14,7 @@ function Settings() {
         pseudo="Pseudo"
         email="Email"
         password="Mot de passe"
-        adresse="10 rue du muet"
+        adresse="Adresse"
         onClick={onDeconnexion}
       />
     </div>

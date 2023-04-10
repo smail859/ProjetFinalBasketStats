@@ -1,4 +1,6 @@
+// REACT
 import { useState, useEffect } from "react";
+// MATERIAL UI
 import {
   Card,
   CardContent,
@@ -6,39 +8,44 @@ import {
   Alert,
   AlertTitle,
 } from "@mui/material";
+// PROPS
 import PropTypes from "prop-types";
+// JSON
 import CalculData from "../CalculData";
 import titles from "../../assets/title.json";
-import "./trainingRcm.css";
+// REDUX
 import { useDispatch } from "react-redux";
 import { addNewTrainings } from "../../redux/reducers";
+// STYLE
+import "./trainingRcm.css";
 
 function TrainingRcm({
-  title,
+  title = "",
   data,
-  buttonText,
-  listClassName,
-  cardClassName,
+  buttonText = "",
+  listClassName = "",
+  cardClassName = "",
 }) {
-  // Récupère le dispatcher de Redux
   const dispatch = useDispatch();
 
   const [showAlert, setShowAlert] = useState(false);
   const [trainingCheck, setTrainingCheck] = useState([]);
-  const [addedTrainingName, setAddedTrainingName] = useState("");
+  const [newTrainingName, setNewTrainingName] = useState("");
+
   const handleToggle = (event) => {
     const { name } = event.target;
     setTrainingCheck((prevTrainingCheck) => prevTrainingCheck.concat(name));
   };
+
   const handleAdd = () => {
     if (trainingCheck.length > 0) {
       dispatch(addNewTrainings(trainingCheck));
-      setAddedTrainingName(trainingCheck.join(", "));
+      setNewTrainingName(trainingCheck.join(", "));
       setTrainingCheck([]);
       setShowAlert(true);
     }
   };
-  // Afficher l'alerte avec la dernière formation ajoutée
+
   useEffect(() => {
     if (showAlert) {
       setTimeout(() => {
@@ -50,34 +57,28 @@ function TrainingRcm({
   return (
     <Card className={cardClassName}>
       <CardContent className="card_content_training_rcm">
-        {/* Affiche le titre s'il est défini */}
         {title && <Typography variant="h5">{title}</Typography>}
-        {/* Affiche un message d'alerte s'il y a eu ajout d'un nouvel entrainement */}
         {showAlert && (
           <Alert severity="success">
             <AlertTitle>
-              Nouvel entraînement ajouté: {addedTrainingName}
+              Nouvelle formation ajoutée : {newTrainingName}
             </AlertTitle>
           </Alert>
         )}
-
-        {/* Appel du composant CalculData pour afficher les données */}
-        <>
-          <CalculData
-            trainingName={titles}
-            data={data}
-            onChange={handleToggle}
-            onClick={handleAdd}
-            className={listClassName}
-            buttonText={buttonText}
-          />
-        </>
+        <CalculData
+          key={data.length}
+          trainingName={titles}
+          data={data}
+          onChange={handleToggle}
+          onClick={handleAdd}
+          className={listClassName}
+          buttonText={buttonText}
+        />
       </CardContent>
     </Card>
   );
 }
 
-// Propriétés attendues par le composant TrainingRcm
 TrainingRcm.propTypes = {
   title: PropTypes.string,
   data: PropTypes.array.isRequired,

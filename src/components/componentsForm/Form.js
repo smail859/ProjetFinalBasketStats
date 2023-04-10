@@ -1,7 +1,5 @@
-import FormField from "../Field/FormField";
-import CustomButton from "../buttons/Button";
-import "./form.css";
 import PropTypes from "prop-types";
+// MATERIAL UI
 import {
   Card,
   Checkbox,
@@ -14,10 +12,15 @@ import {
   Alert,
   AlertTitle,
 } from "@mui/material";
-
+// MATERIAL ICONS
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 import EmailIcon from "@mui/icons-material/Email";
+// COMPONENTS
+import FormField from "../Field/FormField";
+import CustomButton from "../buttons/Button";
+// STYLE
+import "./form.css";
 
 function Form({
   handleSubmit,

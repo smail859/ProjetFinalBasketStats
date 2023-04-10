@@ -1,7 +1,9 @@
+// MATERIAL ICONS
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import SportsBasketballOutlinedIcon from "@mui/icons-material/SportsBasketballOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 
 export const MenuDataBis = [
   {
@@ -10,14 +12,19 @@ export const MenuDataBis = [
     icon: <HomeOutlinedIcon />,
   },
   {
-    title: "Entrainements",
+    title: "Calendrier",
     url: "/calendarTraining",
+    icon: <CalendarMonthOutlinedIcon />,
+  },
+  {
+    title: "Entrainements",
+    url: "/dashboardSignUp",
     icon: <SportsBasketballOutlinedIcon />,
   },
   {
     title: "Messagerie",
     url: "/Messaging",
-    icon: <CalendarMonthOutlinedIcon />,
+    icon: <NotificationsActiveIcon />,
   },
   {
     title: "Parametres",

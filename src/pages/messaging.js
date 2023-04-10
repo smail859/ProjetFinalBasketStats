@@ -1,5 +1,7 @@
+// COMPONENTS
 import MessagingNotif from "../components/componentsMessaging/MessagingNotif";
 import MessagingNews from "../components/componentsMessaging/MessagingNews";
+// STYLE
 import "../styles/messaging.css";
 
 function Messaging() {

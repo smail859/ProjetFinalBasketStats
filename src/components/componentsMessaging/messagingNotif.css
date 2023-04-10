@@ -65,9 +65,7 @@
 .notif_form button {
   margin-left: 25px;
 }
-.notif_form:hover button {
-  background-color: black;
-}
+
 .weather {
   display: flex;
   justify-content: center;

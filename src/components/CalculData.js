@@ -1,5 +1,8 @@
-import { Typography, Checkbox } from "@mui/material";
+// REACT
 import { useMemo } from "react";
+// MATERIAL UI
+import { Typography, Checkbox } from "@mui/material";
+// COMPONENT
 import CustomButton from "./buttons/Button";
 
 function CalculData({ data, onChange, onClick, trainingName }) {

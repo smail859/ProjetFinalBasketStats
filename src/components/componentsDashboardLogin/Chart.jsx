@@ -1,4 +1,4 @@
-import React from "react";
+// REACHARTS
 import {
   LineChart,
   Line,
@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+// STYLE
 import "./chart.css";
 
 function Chart({ data, title, chartIndex }) {

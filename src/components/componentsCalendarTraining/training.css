@@ -29,10 +29,6 @@
   flex-basis: 50%;
 }
 
-.button_training:hover {
-  background-color: black !important;
-}
-
 @media screen and (max-width: 600px) {
   .card_training {
     max-width: 100%;

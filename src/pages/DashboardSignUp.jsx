@@ -1,9 +1,14 @@
+// REACT
 import { useState } from "react";
+// MATERIAL UI
 import { Card, Box, CardContent, Typography } from "@mui/material";
+// COMPONENTS
 import ScoreCard from "../components/componentsDashboardSignUp/ScoreCard";
-import titles from "../assets/title.json";
-import "../styles/dashboardSignUp.css";
 import CustomButton from "../components/buttons/Button";
+// JSON
+import titles from "../assets/title.json";
+// STYLE
+import "../styles/dashboardSignUp.css";
 
 function DashboardSignUp() {
   // Initialiser le state pour les scores avec des objets vides

@@ -5,6 +5,16 @@
   margin-top: 100px;
   border-radius: 10px !important;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  animation: slide-up 0.5s ease-in-out;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 .card_dashboard .card {
   margin: 30px;
@@ -34,10 +44,6 @@
 
 .button_dashboard button {
   background-color: #f47b06;
-}
-
-.button_dashboard button:hover {
-  background-color: #050200;
 }
 
 .card_dashboard .MuiTextField-root label {

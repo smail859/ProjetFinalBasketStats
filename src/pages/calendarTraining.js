@@ -1,8 +1,11 @@
+// COMPONENTS
 import TrainingRcm from "../components/componentsCalendarTraining/TrainingRcm";
 import Training from "../components/componentsCalendarTraining/Training";
 import CalendarInfos from "../components/componentsCalendarTraining/CalendarInfos";
-import "../styles/calendarTraining.css";
+// JSON
 import data from "../assets/data.json";
+// STYLE
+import "../styles/calendarTraining.css";
 
 function CalendarTraining() {
   return (
@@ -20,11 +23,7 @@ function CalendarTraining() {
         checkboxClassName="checkbox_training"
         buttonClassName="button_training"
       />
-      <CalendarInfos
-        title="Récapitulatif des entraînements"
-        recommendedTraining="Tir 2 Points"
-        selectedTraining="Tir 3 Points"
-      />
+      <CalendarInfos title="Récapitulatif des entraînements" />
     </div>
   );
 }

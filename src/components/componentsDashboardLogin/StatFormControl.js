@@ -1,4 +1,6 @@
+// REACT
 import { useState } from "react";
+// MATERIAL UI
 import {
   Box,
   FormControl,
@@ -6,7 +8,9 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
+// JSON
 import title from "../../assets/title.json";
+// STYLE
 import "./statForm.css";
 
 /**

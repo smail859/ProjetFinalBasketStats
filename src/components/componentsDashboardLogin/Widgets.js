@@ -1,15 +1,23 @@
-import { useMemo } from "react";
+// REACT
+import { useMemo, useState } from "react";
+// MATERIAL UI
 import { Card, CardContent, Typography, Box } from "@mui/material";
+// MATERIAL ICONS
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+// JSON
 import titles from "../../assets/title.json";
+// STYLE
 import "./widgets.css";
 
 function Widgets({ dataPoints }) {
-  // Calculer le nombre total de points pour chaque mois
+  // Créer une copie de la variable d'état dataPoints
+  const [widgetDataPoints, setWidgetDataPoints] = useState(dataPoints);
+
+  // Calculer le nombre total de points pour chaque mois à partir de la copie de dataPoints
   const totalPointsByMonth = useMemo(() => {
-    if (dataPoints.length > 0) {
-      return dataPoints.reduce(
+    if (widgetDataPoints.length > 0) {
+      return widgetDataPoints.reduce(
         (acc, monthData) => {
           return [
             acc[0] + monthData.data0,
@@ -24,7 +32,7 @@ function Widgets({ dataPoints }) {
     } else {
       return [0, 0, 0, 0, 0];
     }
-  }, [dataPoints]);
+  }, [widgetDataPoints]);
 
   // Récupérer l'icône de flèche appropriée en fonction du total de points pour chaque mois
   const getArrowIcon = (index) => {

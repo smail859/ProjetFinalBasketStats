@@ -1,7 +1,12 @@
+// REACT
 import { useState } from "react";
+// COMPONENTS
 import { MenuDataBis } from "./MenuDataBis";
+// NAVIGATION
 import { NavLink } from "react-router-dom";
+// ICON
 import { FaBars } from "react-icons/fa";
+// STYLE
 import "./navbar.css";
 
 function NavBarBis({ children, title }) {

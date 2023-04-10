@@ -1,7 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { styled } from "@mui/material/styles";
+// MATERIAL UI
 import Button from "@mui/material/Button";
+// PROPS
+import PropTypes from "prop-types";
+// STYLE
+import { styled } from "@mui/material/styles";
+// ANIMATION
 import { keyframes } from "@emotion/react";
 
 // Animation keyframes
@@ -28,6 +31,7 @@ const StyledButton = styled(Button)(({ backgroundColor, textColor }) => ({
   borderRadius: 30,
   "&:hover": {
     animation: `${buttonAnimation} 0.5s ease-in-out infinite`,
+    backgroundColor: "black",
   },
 }));
 
