@@ -27,7 +27,7 @@ function DashboardSignUp() {
     setScores(newScores);
   };
 
-  // Fonction pour gérer le clic sur le bouton Envoyer
+  // Fonction pour envoyer les scores
   const handleClick = (event) => {
     event.preventDefault();
     console.log(scores);
@@ -50,7 +50,7 @@ function DashboardSignUp() {
               title={title.name}
               score1={scores[index].score1}
               score2={scores[index].score2}
-              onScoreChange={(event, field) =>
+              onChange={(event, field) =>
                 handleScoreChange(event, index, field)
               }
             />

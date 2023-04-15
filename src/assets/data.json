@@ -2,7 +2,7 @@
   {
     "name": "Janvier",
     "data0": 180,
-    "data1": 1,
+    "data1": 100,
     "data2": 1,
     "data3": 1,
     "data4": 1
@@ -10,7 +10,7 @@
   {
     "name": "Février",
     "data0": 1,
-    "data1": 1,
+    "data1": 20,
     "data2": 1,
     "data3": 1,
     "data4": 1
@@ -18,18 +18,18 @@
   {
     "name": "Mars",
     "data0": 1,
-    "data1": 1,
-    "data2": 1,
+    "data1": 50,
+    "data2": 100,
     "data3": 1,
     "data4": 1
   },
   {
     "name": "Mai",
     "data0": 1,
-    "data1": 1,
+    "data1": 50,
     "data2": 1,
-    "data3": 1,
-    "data4": 1
+    "data3": 30,
+    "data4": 10
   },
   {
     "name": "Juin",

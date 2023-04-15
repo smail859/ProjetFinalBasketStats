@@ -28,8 +28,7 @@ function CalculData({ data, onChange, onClick, trainingName }) {
     }
   }, [data]);
 
-  // Fonction qui affiche le titre de chaque colonne qui a un total inférieur à 175,
-  // ainsi qu'une case à cocher associée à ce titre
+  // Fonction qui affiche le titre de chaque colonne qui a un total inférieur à 175, ainsi qu'une case à cocher associée à ce titre
   const render = (totalPoints) => {
     return totalPoints.map((total, index) =>
       total < 175 ? (
