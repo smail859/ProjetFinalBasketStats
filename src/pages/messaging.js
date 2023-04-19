@@ -10,7 +10,7 @@ function Messaging() {
       <MessagingNews
         newsApiUrl="https://newsapi.org/v2"
         newsApiKey="1c64b8ade7234a84aa4d543c7d4530bc"
-        newsPageSize="2"
+        newsPageSize="6"
         newsCategory="sport"
       />
       <MessagingNotif apiKey="2cc5f56028a583d2a3757667042a9724" />

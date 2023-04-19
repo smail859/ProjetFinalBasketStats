@@ -34,6 +34,7 @@ function Form({
   isValid,
   isSubmitSuccessful,
   errors,
+  hasError,
   register,
   button,
   link,
@@ -48,21 +49,31 @@ function Form({
             <Typography gutterBottom>{name}</Typography>
           </Box>
 
-          {isSubmitSuccessful && (
+          {isSubmitSuccessful && !hasError ? (
             <Alert severity="success">
-              <AlertTitle>Insciption réussie</AlertTitle>
+              <AlertTitle>
+                {formType === "3-field"
+                  ? "Inscription réussie"
+                  : "Connexion réussie"}
+              </AlertTitle>
               Vous allez être redirigé vers votre page personnelle
             </Alert>
-          )}
+          ) : null}
 
-          {formType === "3-fields" && ( // si le formulaire est de type "3-fields", affiche un champ pour le pseudo
+          {formType === "3-field" && ( // si le formulaire est de type "3-fields", affiche un champ pour le pseudo
             <Box className="form-field-box ">
               <PersonIcon className="formIcon" />
               <FormField
                 type="text"
                 label="Pseudo"
                 name="pseudo"
-                rules={{ required: true }} // règle de validation qui indique que le champ est obligatoire
+                rules={{
+                  required: "Vous devez entrer un pseudo",
+                  minLength: {
+                    value: 6,
+                    message: "Le pseudo doit contenir au moins 6 caractere",
+                  },
+                }}
                 register={register} // enregistre le champ avec React Hook Form
                 errors={errors} // affiche les erreurs de validation éventuelles
               />
@@ -76,7 +87,7 @@ function Form({
               type="email"
               label={emailLabel}
               name="email"
-              rules={{ required: true }}
+              rules={{ required: "Vous devez entrer une adresse email valide" }}
               register={register}
               errors={errors}
             />
@@ -98,7 +109,7 @@ function Form({
                 pattern: {
                   value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/,
                   message:
-                    "Le mot de passe doit contenir au moins 8 caractères et une majuscule ",
+                    "Le mot de passe doit contenir au moins 8 caractères et une majuscule et un chiffre ",
                 },
               }}
               register={register}
@@ -106,10 +117,13 @@ function Form({
             />
           </Box>
           <Box className="formCheckbox">
-            <FormControlLabel
-              control={<Checkbox {...register("rememberMe")} />}
-              label="J'accpete les condition d'utilisation"
-            />
+            {formType === "3-field" ? (
+              <FormControlLabel
+                control={<Checkbox {...register("rememberMe")} />}
+                label="J'accpete les condition d'utilisation"
+              />
+            ) : null}
+
             <Link href="#" underline="none">
               {"Mot de passe oublié"}
             </Link>
@@ -140,10 +154,10 @@ Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   title: PropTypes.string,
   name: PropTypes.string,
-  formType: PropTypes.string.isRequired,
+  formType: PropTypes.string,
   emailLabel: PropTypes.string.isRequired,
   passwordLabel: PropTypes.string.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
+  isSubmitting: PropTypes.bool,
   isValid: PropTypes.bool.isRequired,
   isSubmitSuccessful: PropTypes.bool.isRequired,
   errors: PropTypes.object.isRequired,
