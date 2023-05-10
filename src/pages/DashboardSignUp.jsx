@@ -10,7 +10,10 @@ import titles from "../assets/title.json";
 // STYLE
 import "../styles/dashboardSignUp.css";
 
+import axios from "axios";
+
 function DashboardSignUp() {
+  const apiURL = process.env.REACT_APP_API_URL;
   // Initialiser le state pour les scores avec des objets vides
   const [scores, setScores] = useState(
     titles.map(() => ({
@@ -18,6 +21,22 @@ function DashboardSignUp() {
       score2: "",
     }))
   );
+
+  // Vérifier si le token est stocké dans les cookies
+  const addScore = async (title, scoreUn, scoreDeux) => {
+    try {
+      const month = new Date().toISOString();
+      const response = await axios.post(`${apiURL}score`, {
+        month,
+        title,
+        scoreUn,
+        scoreDeux,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Fonction pour changer les scores
   const handleScoreChange = (event, index, field) => {
@@ -30,7 +49,9 @@ function DashboardSignUp() {
   // Fonction pour envoyer les scores
   const handleClick = (event) => {
     event.preventDefault();
-    console.log(scores);
+    scores.forEach((score, index) => {
+      addScore(titles[index].name, score.score1, score.score2);
+    });
   };
 
   return (
